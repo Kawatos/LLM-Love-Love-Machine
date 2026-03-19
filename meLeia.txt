@@ -1,0 +1,234 @@
+basicamente, dar npm start em /llm-game.
+
+Perfeito — vamos direto ao essencial: **rodar (teste) e gerar o executável (.exe)** do seu projeto Electron.
+
+---
+
+# 📌 1. Testar localmente (modo dev)
+
+Na raiz do projeto:
+
+```bash
+npm start
+```
+
+Isso usa o script:
+
+```json
+"start": "electron ."
+```
+
+### ✔ O que verificar agora:
+
+* abre a janela corretamente
+* botão **Novo Jogo** funciona
+* botão **Continuar** carrega save
+* avanço de frames funciona
+* não há erro no console
+
+---
+
+## 🔹 Abrir console (debug)
+
+Dentro do Electron:
+
+```js
+win.webContents.openDevTools();
+```
+
+Adiciona isso no `main.js`:
+
+```js
+win.webContents.openDevTools();
+```
+
+👉 essencial pra debugar JS/DOM igual navegador
+
+---
+
+# 📌 2. Problemas comuns nessa fase
+
+### 🔴 Caminho de arquivos
+
+Se imagens ou JSON não carregarem:
+
+👉 use caminhos relativos corretos:
+
+```js
+fetch('story.json')
+```
+
+Se quebrar depois no build → vamos ajustar com `__dirname` (explico mais abaixo).
+
+---
+
+# 📌 3. Build do executável (.exe)
+
+Vamos usar:
+
+👉 **electron-builder**
+
+---
+
+## 🔹 Instalar
+
+```bash
+npm install electron-builder --save-dev
+```
+
+---
+
+## 🔹 Configurar `package.json`
+
+Adicione:
+
+```json
+"build": {
+  "appId": "com.llm.game",
+  "productName": "LLM - Large Love Machine",
+  "win": {
+    "target": "nsis"
+  }
+}
+```
+
+---
+
+## 🔹 Script de build
+
+```json
+"scripts": {
+  "start": "electron .",
+  "build": "electron-builder"
+}
+```
+
+---
+
+## 🔹 Gerar o .exe
+
+```bash
+npm run build
+```
+
+---
+
+# 📌 4. Resultado
+
+Depois do build:
+
+```txt
+/dist
+  LLM - Large Love Machine Setup.exe
+```
+
+👉 esse já é o instalador do jogo
+
+---
+
+# 📌 5. Problema clássico pós-build (IMPORTANTE)
+
+Depois de buildar, pode acontecer:
+
+### ❌ `fetch('story.json')` quebra
+
+Porque no build os arquivos ficam empacotados.
+
+---
+
+## 🔹 Solução robusta
+
+Trocar:
+
+```js
+fetch('story.json')
+```
+
+Por:
+
+```js
+const path = require('path');
+const fs = require('fs');
+
+const filePath = path.join(__dirname, 'story.json');
+const data = JSON.parse(fs.readFileSync(filePath));
+```
+
+👉 isso funciona tanto em dev quanto no build
+
+---
+
+# 📌 6. Ajuste recomendado (boa prática)
+
+No `main.js`, adicione:
+
+```js
+const path = require('path');
+
+win.loadFile(path.join(__dirname, 'src/index.html'));
+```
+
+---
+
+# 📌 7. Teste do build
+
+Após gerar:
+
+1. rode o `.exe`
+2. instale
+3. abra o jogo
+
+### ✔ valide:
+
+* menu abre
+* jogo roda
+* save funciona
+
+---
+
+# 📌 8. Dica profissional (importante)
+
+Para evitar bugs:
+
+### 🔹 sempre teste em:
+
+* modo dev (`npm start`)
+* modo build (`.exe`)
+
+👉 porque o ambiente muda bastante
+
+---
+
+# 📌 9. Próximo passo ideal
+
+Agora que você consegue:
+
+✔ rodar
+✔ buildar
+✔ distribuir
+
+👉 próximo upgrade lógico é:
+
+### 🔥 sistema de escolhas (branching real)
+
+ou
+
+### 🔥 state manager (afinidade + flags)
+
+---
+
+# 📌 Conclusão
+
+Você agora tem:
+
+* pipeline de execução ✅
+* pipeline de build ✅
+* base jogável ✅
+
+👉 isso já é um **projeto distribuível**
+
+---
+
+Quando quiser, seguimos para:
+
+👉 **escolhas + múltiplos caminhos (core de VN de verdade)**

@@ -1,0 +1,5 @@
+llm-game/node_modules/
+llm-game/dist/
+llm-game/build/
+llm-game/*.log
+llm-game/.DS_Store
