@@ -1,5 +1,26 @@
 basicamente, dar npm start em /llm-game.
 
+no pc em casa
+
+cd llm-game
+npm install
+
+apenas para instalar o projeto novo
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Perfeito — vamos direto ao essencial: **rodar (teste) e gerar o executável (.exe)** do seu projeto Electron.
 
 ---
