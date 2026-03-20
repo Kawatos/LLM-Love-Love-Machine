@@ -3,3 +3,5 @@ llm-game/dist/
 llm-game/build/
 llm-game/*.log
 llm-game/.DS_Store
+llm-game/src/llama
+llm-game/src/models

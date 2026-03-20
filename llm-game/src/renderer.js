@@ -6,3 +6,4 @@ function render() {
   document.getElementById("background").style.backgroundImage =
     `url(${frame.background || ''})`;
 }
+

@@ -16,7 +16,7 @@
   },
   "build": {
     "appId": "com.llm.game",
-    "productName": "LLM - Large Love Machine",
+    "productName": "LLM - Love Love Machine",
     "win": {
       "target": "nsis"
     }

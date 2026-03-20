@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AI Test</title>
+  <style>
+    body { font-family: sans-serif; display: flex; gap: 20px; }
+    .box { width: 50%; }
+    textarea { width: 100%; height: 150px; }
+  </style>
+</head>
+<body>
+
+  <div class="box">
+    <h2>Contexto</h2>
+    <textarea id="contextInput"></textarea>
+    <button onclick="salvarContexto()">Salvar Contexto</button>
+    <p id="status"></p>
+  </div>
+
+  <div class="box">
+    <h2>Chat</h2>
+    <textarea id="chatLog" readonly></textarea>
+    <input id="userInput" placeholder="Digite..." />
+    <button onclick="enviar()">Enviar</button>
+  </div>
+
+  <script src="ai-test.js"></script>
+</body>
+</html>

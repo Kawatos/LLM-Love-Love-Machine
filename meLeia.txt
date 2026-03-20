@@ -1,4 +1,4 @@
-basicamente, dar npm start em /llm-game.
+basicamente, dar npm start em /llm-game. para rodar
 
 no pc em casa
 
@@ -8,7 +8,9 @@ npm install
 apenas para instalar o projeto novo
 
 
+Se quiser instalar ou rebuildar o programa, em /llm-game, de npm run build, mas certifique que o windows esteja no modo de desenvolvedor
 
+para rodar o modelo, .\llama-cli.exe -m ../models/model.gguf -p "Olá, quem é você?" -n 500 --temp 0.8 , use em src/llama, note que o .\ é importante
 
 
 
@@ -106,7 +108,7 @@ Adicione:
 ```json
 "build": {
   "appId": "com.llm.game",
-  "productName": "LLM - Large Love Machine",
+  "productName": "LLM - Love Love Machine",
   "win": {
     "target": "nsis"
   }
@@ -140,7 +142,7 @@ Depois do build:
 
 ```txt
 /dist
-  LLM - Large Love Machine Setup.exe
+  LLM - Love Love Machine Setup.exe
 ```
 
 👉 esse já é o instalador do jogo
